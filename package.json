@@ -1,0 +1,20 @@
+{
+  "name": "file_transfer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "receive": "nodemon /src/receive.js",
+    "send": "nodemon /src/send.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sap_oss/node-socketio-stream": "^1.0.2",
+    "nodemon": "^2.0.7",
+    "socket.io": "^4.0.0",
+    "socket.io-client": "^4.0.0",
+    "socket.io-stream": "^0.9.1"
+  }
+}
