@@ -1,6 +1,7 @@
 // Importing required modules
 const http = require('http').createServer();
 const io = require('socket.io')(http);
+// Check whether stream modules are same or not in sender and receiver
 const ss = require('@sap_oss/node-socketio-stream');
 const fs = require('fs');
 const path = require('path');
@@ -8,19 +9,21 @@ const path = require('path');
 io.on("connect", (socket) => {
   console.log('Connected');
   // Casting socketio ko socketio stream and receiving the stream and data about the file from the emit event
-  ss(socket).on('Data', (stream, data) => {
-    console.log('Above pipe');
-    var filename = path.basename(data.name);
-    stream.pipe(fs.createWriteStream(filename));
-    console.log('Below Pipe');
-  });
-  console.log('Outside on')
+    ss(socket).on('file', (stream, data, err) => {
+      if(err) return console.error(err);
+      console.log('Receiving file.');
+      var filename = path.basename(data.name);
+      var writeStream = fs.createWriteStream(filename);
+      stream.pipe(writeStream);
+      console.log('File received.');
+    });
+  console.log('Outside on');
 });
-// Disconnect event
-io.on('disconnect', () => {
-  console.log('Disconnected')
-})
 // Server listening on
-http.listen(10000, () => {
-  console.log('Listening: ')
+http.listen(10000, '192.168.1.5', () => {
+  console.log(`Listening: ${http.address().address}`)
+});
+
+writeStream.on('error', (err) => {
+  return console.error(err);
 })
