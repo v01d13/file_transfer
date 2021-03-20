@@ -16,14 +16,13 @@ io.on("connect", (socket) => {
       var writeStream = fs.createWriteStream(filename);
       stream.pipe(writeStream);
       console.log('File received.');
+      writeStream.on('error', (err) => {
+        return console.error (err);
+      });
     });
   console.log('Outside on');
 });
 // Server listening on
 http.listen(10000, '192.168.1.5', () => {
-  console.log(`Listening: ${http.address().address}`)
+  console.log(`Listening : ${http.address().address}:${http.address().port}`)
 });
-
-writeStream.on('error', (err) => {
-  return console.error(err);
-})
