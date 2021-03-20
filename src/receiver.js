@@ -23,6 +23,6 @@ io.on("connect", (socket) => {
   console.log('Outside on');
 });
 // Server listening on
-http.listen(10000, '192.168.1.5', () => {
+http.listen(8888, '192.168.1.92', () => {
   console.log(`Listening : ${http.address().address}:${http.address().port}`)
 });
