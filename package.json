@@ -11,9 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sap_oss/node-socketio-stream": "^1.0.2",
     "nodemon": "^2.0.7",
     "socket.io": "^4.0.0",
-    "socket.io-client": "^4.0.0"
+    "socket.io-client": "^2.3.0"
   }
 }
